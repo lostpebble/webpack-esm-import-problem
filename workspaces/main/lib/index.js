@@ -28,7 +28,6 @@ var x = y => { var x = {}; __webpack_require__.d(x, y); return x; }
 var y = x => () => x
 const external_fela_plugin_named_keys_namespaceObject = x({ ["default"]: () => __WEBPACK_EXTERNAL_MODULE_null__.default });
 ;// CONCATENATED MODULE: ./src/MainEntry.ts
- // import { Renderer } from "@test-dep/extra";
 
 console.log(external_fela_plugin_named_keys_namespaceObject.default);
 var EMediaDimensions;
@@ -40,5 +39,5 @@ var EMediaDimensions;
 var mediaQueries = {
   desktopOnly: "@media (min-width: ".concat(EMediaDimensions.DesktopStart, "px)")
 };
-var namedKeysPlugin = external_fela_plugin_named_keys_namespaceObject.default.default(mediaQueries);
-console.log("Module executed successfully in MAIN module"); // Renderer();
+var namedKeysPlugin = (0,external_fela_plugin_named_keys_namespaceObject.default)(mediaQueries);
+console.log("Module executed successfully in MAIN module");
