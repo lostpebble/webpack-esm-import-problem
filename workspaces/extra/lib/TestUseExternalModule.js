@@ -10,7 +10,7 @@ var mediaQueries = {
   desktopOnly: "@media (min-width: ".concat(EMediaDimensions.DesktopStart, "px)")
 };
 var namedKeysPlugin = namedKeys(mediaQueries);
-console.log("Module executed successfully");
+console.log("Module executed successfully in EXTRA module");
 export var Renderer = () => {
   console.log("Renderer executing successfully...");
 };
