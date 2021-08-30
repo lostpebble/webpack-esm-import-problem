@@ -21,12 +21,9 @@ export default {
       },
     }]
   },
-  // externalsPresets: { "node": true },
   experiments: { "outputModule": true },
   externalsType: "module",
-  externals: {
-    "fela-plugin-named-keys": "fela-plugin-named-keys"
-  },
+  externals: [{ "fela-plugin-named-keys": "module fela-plugin-named-keys" }, { "unified": "module unified" }],
   optimization: {
     minimize: false,
   },

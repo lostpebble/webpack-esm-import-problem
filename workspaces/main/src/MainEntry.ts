@@ -1,4 +1,5 @@
 import namedKeys from "fela-plugin-named-keys";
+import { unified } from "unified";
 
 console.log(namedKeys);
 
@@ -11,5 +12,8 @@ const mediaQueries = {
 };
 
 const namedKeysPlugin = namedKeys(mediaQueries);
+
+// Test of an actual ES6 Module
+const something = unified().parse("");
 
 console.log("Module executed successfully in MAIN module");
