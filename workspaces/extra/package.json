@@ -1,0 +1,17 @@
+{
+  "name": "@test-dep/extra",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "lib/TestUseExternalModule.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -x .ts --root-mode upward --out-dir lib"
+  },
+  "dependencies": {
+    "fela": "^11.4.0",
+    "fela-plugin-named-keys": "^11.4.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
