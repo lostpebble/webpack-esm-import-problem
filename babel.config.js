@@ -1,6 +1,6 @@
 module.exports = {
   presets: ["@babel/typescript", ["@babel/env", {
-    modules: "auto",
+    modules: false,
     targets: {
       node: "current",
       esmodules: true,

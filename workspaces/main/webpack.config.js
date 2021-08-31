@@ -3,6 +3,9 @@ import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
 
+const whiteList = [/@test-dep/];
+const whiteListContext = ["webpack-module-errors\\workspaces\\main\\src", "webpack-module-errors\\workspaces\\extra"];
+
 export default {
   entry: "./src/MainEntry.ts",
   target: ["node", "es2020"],
@@ -17,7 +20,8 @@ export default {
       module: true,
     },
   },
-  mode: "production",
+  devtool: "cheap-module-source-map",
+  mode: "development",
   module: {
     rules: [{
       test: /\.ts/,
@@ -30,7 +34,7 @@ export default {
   experiments: { "outputModule": true },
   externalsType: "module",
   externals: {
-    "fela-plugin-named-keys": "module fela-plugin-named-keys",
+    // "fela-plugin-named-keys": "node-commonjs fela-plugin-named-keys",
     "unified": "module unified",
     "rehype-parse": "module rehype-parse",
   },
@@ -43,17 +47,17 @@ export default {
   /*externals: [function ({ context, request, contextInfo, getResolve }, callback) {
     console.log(`Request`, request);
     console.log(`Context`, context);
-    // console.log(`Context Info`, contextInfo);
 
-    // console.log(getResolve()(context));
-    // console.log(`GetResolve`, getResolve());
-
-    console.log(`${!request.startsWith(".")} && ${context.includes("webpack-module-errors\\workspaces\\main\\src")}`)
-
-    if (!request.startsWith(".") && context.includes("webpack-module-errors\\workspaces\\main\\src")) {
-      console.log(`Making external: ${request}`);
+    if (!request.startsWith(".") && whiteListContext.some(c => context.includes(c))) {
       const libFile = require.resolve(request);
       console.log(`Lib file: ${libFile}`);
+
+      if (whiteList.some(r => r.test(request))) {
+        console.log(`NOT external (bundled): ${request}`);
+        return callback(); // bundle this
+      }
+
+      console.log(`Making external: ${request}`);
       const moduleBasePath = /(.+node_modules\\([^\\]+|@[^\\]+\\[^\\]+))/g.exec(libFile);
       console.log(moduleBasePath);
       if (moduleBasePath != null) {
@@ -64,8 +68,11 @@ export default {
         }
       }
 
-      return callback(null, `module ${request}`);
+      return callback(null, `node-commonjs ${request}`);
     }
+
+    console.log(`NOT external (bundled): ${request}`);
+
     callback();
   }],*/
 };
