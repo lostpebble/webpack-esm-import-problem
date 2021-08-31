@@ -1,3 +1,5 @@
+Related issue: https://github.com/webpack/webpack/issues/14097
+
 ## Steps to run
 
 * run `npm install` inside this root folder
