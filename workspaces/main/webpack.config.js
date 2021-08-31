@@ -1,5 +1,4 @@
 import path from "path";
-// import webpackNodeExternals from "webpack-node-externals";
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
@@ -18,7 +17,7 @@ export default {
       module: true,
     },
   },
-  mode: "development",
+  mode: "production",
   module: {
     rules: [{
       test: /\.ts/,
@@ -30,7 +29,18 @@ export default {
   },
   experiments: { "outputModule": true },
   externalsType: "module",
-  externals: [function ({ context, request, contextInfo, getResolve }, callback) {
+  externals: {
+    "fela-plugin-named-keys": "module fela-plugin-named-keys",
+    "unified": "module unified",
+    "rehype-parse": "module rehype-parse",
+  },
+  externalsPresets: {
+    node: true,
+  },
+  optimization: {
+    minimize: false,
+  },
+  /*externals: [function ({ context, request, contextInfo, getResolve }, callback) {
     console.log(`Request`, request);
     console.log(`Context`, context);
     // console.log(`Context Info`, contextInfo);
@@ -54,14 +64,8 @@ export default {
         }
       }
 
-      return callback(null, `import ${request}`);
+      return callback(null, `module ${request}`);
     }
     callback();
-  }],
-  externalsPresets: {
-    node: true,
-  },
-  optimization: {
-    minimize: false,
-  },
+  }],*/
 };
